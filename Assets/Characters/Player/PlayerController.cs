@@ -18,24 +18,26 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
+     private void FixedUpdate() {
+            // If movement input is not 0, try to move
+            if(movementInput != Vector2.zero){
+                
+                bool success = TryMove(movementInput);
 
-    private void FixedUpdate() {
-        //If movement input is not 0, try to move
-        if (movementInput != Vector2.zero) {
-            bool success = TryMove(movementInput);
+                if(!success) {
+                    success = TryMove(new Vector2(movementInput.x, 0));
+                }
 
-            if (!success) {
-                success = TryMove(new Vector2(movementInput.x, 0));
-
-                if (!success) {
+                if(!success) {
                     success = TryMove(new Vector2(0, movementInput.y));
-                } 
+                }
+                
+                animator.SetBool("isMoving", success);
+            } else {
+                animator.SetBool("isMoving", false);
             }
-
-            
-        }
-
     }
 
     private bool TryMove(Vector2 direction) {
