@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
 
     Vector2 movementInput;
+    SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
      private void FixedUpdate() {
             // If movement input is not 0, try to move
@@ -38,27 +40,49 @@ public class PlayerController : MonoBehaviour
             } else {
                 animator.SetBool("isMoving", false);
             }
+
+            //set the direction of sprite to movement direction if move left animation looks left
+            if(movementInput.x < 0) {
+                spriteRenderer.flipX = true;
+            } else if (movementInput.x > 0) {
+                spriteRenderer.flipX = false;
+            }
+
+
     }
 
     private bool TryMove(Vector2 direction) {
-        // Check for potnetial collisions
-           int count = rb.Cast(
-            direction, // X and Y values between -1 and 1 represent the direction from the body to look for collisions
-            movementFilter, // The settings that determine where a collision can occour on such as layers to collide with
-            castCollisions, // List of collisions to store the found collisiosn into after the Cast is finsihed
-            moveSpeed * Time.fixedDeltaTime + collisionOffset); // tThe amount to cast equal to the movementplus an offset
+        if(direction != Vector2.zero) {
+            // Check for potential collisions
+            int count = rb.Cast(
+                direction, // X and Y values between -1 and 1 that represent the direction from the body to look for collisions
+                movementFilter, // The settings that determine where a collision can occur on such as layers to collide with
+                castCollisions, // List of collisions to store the found collisions into after the Cast is finished
+                moveSpeed * Time.fixedDeltaTime + collisionOffset); // The amount to cast equal to the movement plus an offset
 
-        if(count == 0) {
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-            return true; 
+            if(count == 0){
+                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+                return true;
+            } else {
+                return false;
+            }
         } else {
+            // Can't move if there's no direction to move in
             return false;
         }
+        
     }
+
 
 
 
     void OnMove(InputValue movementValue) {
         movementInput = movementValue.Get<Vector2>();
+    }
+
+
+
+    void OnFire() {
+        animator.SetTrigger("swoardAttack");
     }
 }
