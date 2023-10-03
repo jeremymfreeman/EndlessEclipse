@@ -9,8 +9,11 @@ public class Enemy : MonoBehaviour {
     public float rotateSpeed = 0.0025f;
     private Rigidbody2D rb;
 
-    private void start() {
+     SpriteRenderer spriteRenderer;
+
+    private void Start() {
             rb = GetComponent<Rigidbody2D>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update () {
@@ -29,8 +32,14 @@ public class Enemy : MonoBehaviour {
     private void RotateTowardsTarget() {
         Vector2 targetDirection = target.position - transform.position;
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
-        Quaternion q = Quaternion.Euler(new Vector3(0,0,angle));
+        Quaternion q = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
+
+         if(targetDirection.x < 0) {
+                spriteRenderer.flipX = true;
+            } else if (targetDirection.x > 0) {
+                spriteRenderer.flipX = false;
+            }
     }
 
     private void GetTarget() {
