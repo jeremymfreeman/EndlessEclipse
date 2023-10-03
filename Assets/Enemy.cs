@@ -18,8 +18,7 @@ public class Enemy : MonoBehaviour {
               GetTarget();
         }   else {
            RotateTowardsTarget();
-            x = 1;
-            y = 1;
+        
             }
         }
 
