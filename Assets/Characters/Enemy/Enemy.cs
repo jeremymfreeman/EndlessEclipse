@@ -10,12 +10,17 @@ public class Enemy : MonoBehaviour {
     public float rotateSpeed = 0.0025f;
     private Rigidbody2D rb;
      SpriteRenderer spriteRenderer;
+    public int maxHealth = 100;
+    private int currentHealth;
+
 
     private void Start() { 
             spriteRenderer = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            currentHealth = maxHealth;
     }
+
 
     private void Update () {
         if (!target) {
@@ -29,7 +34,16 @@ public class Enemy : MonoBehaviour {
         rb.velocity = transform.up * speed;
     }
 
-    
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        // Check if the enemy's health has reached zero or below
+        if (currentHealth <= 0)
+        {
+            Die(); // Implement a Die() method to handle enemy death
+        }
+    }
 
 
         private void RotateTowardsTarget() {
@@ -56,5 +70,11 @@ public class Enemy : MonoBehaviour {
             Destroy(other.gameObject);
             target = null;
         }
+    }
+
+     private void Die()
+    {
+        // Handle enemy death, such as playing death animations, awarding points, etc.
+        Destroy(gameObject); // Destroy the enemy GameObject
     }
 }

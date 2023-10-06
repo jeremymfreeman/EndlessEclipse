@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
 
     bool canMove = true;
 
-    private WeaponParent weaponParent;
 
 
     // Start is called before the first frame update
@@ -28,7 +27,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        weaponParent = GetComponentInChildren<WeaponParent>();
     }
 
     private void FixedUpdate() {
@@ -86,46 +84,4 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
 
-    //Mouse aim system
-
-    /*private void Update()
-    {
-        pointerInput = GetPointerInput();
-        weaponParent.PointerPosition = pointerInput;
-
-    }
-
-    private Vector2 GetPointerInput()
-    {
-        Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
-        mousePos.z = Camera.main.nearClipPlane;
-        return Camera.main.ScreenToWorldPoint(mousePos);
-    }
-
-    void OnFire() {
-         animator.SetTrigger("swordAttack");
-     }
-
-     public void SwordAttack() {
-         LockMovement();
-
-         if(spriteRenderer.flipX == true){
-             swordAttack.AttackLeft();
-         } else {
-             swordAttack.AttackRight();
-         }
-     }
-
-     public void EndSwordAttack() {
-         UnlockMovement();
-         swordAttack.StopAttack();
-     }
-
-     public void LockMovement() {
-         canMove = false;
-     }
-
-     public void UnlockMovement() {
-         canMove = true;
-     } */
 }
