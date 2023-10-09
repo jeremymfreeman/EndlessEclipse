@@ -23,9 +23,13 @@ public class MouseTracker : MonoBehaviour
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
 
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            Vector3 direction = (worldPosition - transform.position).normalized;
-            projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+            if (projectile != null)
+            {
+                Vector3 direction = (worldPosition - transform.position).normalized;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+            }
         }
     }
 }
-

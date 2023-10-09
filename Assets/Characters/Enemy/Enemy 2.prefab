@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2342830955036392990}
   - component: {fileID: 8809346999567579414}
   - component: {fileID: 3430311479846890174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -177,3 +177,4 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 0.4
   rotateSpeed: 0.02
+  maxHealth: 100
