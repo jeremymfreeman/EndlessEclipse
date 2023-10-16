@@ -103955,6 +103955,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &135273551
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1453218454}
+    m_Modifications:
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.154
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.098
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.788487
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539598312030570265, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+      propertyPath: m_Name
+      value: Bullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
 --- !u!1 &238937592
 GameObject:
   m_ObjectHideFlags: 0
@@ -104111,6 +104168,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1482062992}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &388788061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 873099805235009431, guid: 703d29e18fa39654ba168bb137db25ea, type: 3}
+  m_PrefabInstance: {fileID: 135273551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &414717772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111876,7 +111938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1049208050}
   - component: {fileID: 1049208051}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MouseTracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112224,7 +112286,8 @@ Transform:
   m_LocalPosition: {x: -0.029, y: -0.0546, z: 0}
   m_LocalScale: {x: 0.4197194, y: 0.51824313, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 388788061}
   m_Father: {fileID: 1049208050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.734}
 --- !u!212 &1453218455
@@ -112791,11 +112854,11 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
-  m_LayerOverridePriority: 1
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -112811,8 +112874,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008044088, y: -0.07282906}
-  m_Size: {x: 0.13423355, y: 0.20421687}
+  m_Offset: {x: 0.0016443852, y: -0.07893086}
+  m_Size: {x: 0.121522516, y: 0.19058691}
   m_Direction: 0
 --- !u!20 &1594810036
 Camera:

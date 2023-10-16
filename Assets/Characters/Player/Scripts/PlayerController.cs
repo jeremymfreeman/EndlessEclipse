@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    bool canMove = true;
     bool isShooting = false; // added variable to check if player is shooting
 
     // Start is called before the first frame update
@@ -30,50 +29,42 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canMove)
+        // If movement input is not 0, try to move
+        if (movementInput != Vector2.zero)
         {
-            // If movement input is not 0, try to move
-            if (movementInput != Vector2.zero)
+            bool success = TryMove(movementInput);
+
+            if (!success)
             {
-
-                bool success = TryMove(movementInput);
-
-                if (!success)
-                {
-                    success = TryMove(new Vector2(movementInput.x, 0));
-                }
-
-                if (!success)
-                {
-                    success = TryMove(new Vector2(0, movementInput.y));
-                }
-
-                animator.SetBool("isMoving", success);
-            }
-            else
-            {
-                animator.SetBool("isMoving", false);
+                success = TryMove(new Vector2(movementInput.x, 0));
             }
 
-            // Set direction of sprite to movement direction
-            if (movementInput.x < 0)
+            if (!success)
             {
-                spriteRenderer.flipX = true;
+                success = TryMove(new Vector2(0, movementInput.y));
             }
-            else if (movementInput.x > 0)
-            {
-                spriteRenderer.flipX = false;
-            }
-        }
 
-        // Check if player is shooting
-        if (isShooting)
-        {
-            canMove = false;
+            animator.SetBool("isMoving", success);
         }
         else
         {
-            canMove = true;
+            animator.SetBool("isMoving", false);
+        }
+
+        // Set direction of sprite to movement direction
+        if (movementInput.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (movementInput.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+
+        // Move the player if they are shooting
+        if (isShooting)
+        {
+            rb.MovePosition(rb.position + movementInput * moveSpeed * Time.fixedDeltaTime);
         }
     }
 
@@ -111,7 +102,7 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
 
-    // Added function to handle shooting input
+    // Modified function to handle shooting input
     void OnShoot(InputValue shootValue)
     {
         isShooting = shootValue.isPressed;

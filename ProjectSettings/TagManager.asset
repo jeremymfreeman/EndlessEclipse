@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Bullets
+  - Projectile
   - Water
   - UI
   - Player
