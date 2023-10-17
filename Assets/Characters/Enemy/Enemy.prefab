@@ -180,8 +180,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 0.1
+  speed: 5
   rotateSpeed: 0.02
+  health: 0
+  maxHealth: 100
+  flashMaterial: {fileID: 0}
+  audioSource: {fileID: 0}
+  damageSound: {fileID: 0}
 --- !u!70 &2406583080205863750
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

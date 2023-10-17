@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public class Enemy : MonoBehaviour
 {
+    public static event Action<Enemy> OnEnemyKilled;
     public Transform target;
     public float speed = 3f;
     public float rotateSpeed = 0.0025f;
     private Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
-    public int maxHealth = 100;
+    [SerializeField] float health, maxHealth = 100f;
     private int currentHealth;
+     public Material flashMaterial;
+    private Material defaultMaterial;
+    public AudioSource audioSource;
+    public AudioClip damageSound;
 
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        currentHealth = maxHealth;
+        health = maxHealth;
+        defaultMaterial = spriteRenderer.material;
     }
 
 
@@ -38,17 +44,27 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = transform.up * speed;
+    } 
+
+
+    public void TakeDamage(float damageAmount)
+    {
+        audioSource.PlayOneShot(damageSound);
+        health -= damageAmount;
+        StartCoroutine(FlashMaterial());
+
+        if (health <= 0)
+        {
+            Destroy(gameObject, damageSound.length);
+            OnEnemyKilled?.Invoke(this);
+        }
     }
 
-    public void TakeDamage(int damage)
+    private IEnumerator FlashMaterial()
     {
-        currentHealth -= damage;
-
-        // Check if the enemy's health has reached zero or below
-        if (currentHealth <= 0)
-        {
-            Die(); // Implement a Die() method to handle enemy death
-        }
+        spriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(1f);
+        spriteRenderer.material = defaultMaterial;
     }
 
 
@@ -77,18 +93,4 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Destroy(other.gameObject);
-            target = null;
-        }
-    }
-
-    private void Die()
-    {
-        // Handle enemy death, such as playing death animations, awarding points, etc.
-        Destroy(gameObject); // Destroy the enemy GameObject
-    }
 }
