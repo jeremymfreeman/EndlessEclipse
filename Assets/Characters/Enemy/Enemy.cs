@@ -39,6 +39,11 @@ public class Enemy : MonoBehaviour
         {
             RotateTowardsTarget();
         }
+         // Check if player is at the same position as the enemy
+        if (target && transform.position == target.position)
+        {
+        Destroy(target.gameObject);
+    }
     }
 
     private void FixedUpdate()
@@ -92,5 +97,7 @@ public class Enemy : MonoBehaviour
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
     }
+
+   
 
 }

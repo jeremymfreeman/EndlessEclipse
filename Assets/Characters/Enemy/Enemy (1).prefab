@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3430311479846890174}
   - component: {fileID: -4983971484282214018}
   - component: {fileID: 3683275548076608340}
+  - component: {fileID: 7124215169610391569}
   m_Layer: 7
   m_Name: Enemy (1)
   m_TagString: Enemy
@@ -121,7 +122,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 2, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.28866667}
@@ -163,7 +164,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3430311479846890174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 0.1
-  rotateSpeed: 0.02
+  speed: 0.5
+  rotateSpeed: 5
   health: 0
   maxHealth: 100
   flashMaterial: {fileID: 2100000, guid: d0cad190627f9104c9ca19e978503d4d, type: 2}
@@ -294,3 +295,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7124215169610391569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5815403079285930414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c3ca354b53ee14786292b2bfbfe9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
