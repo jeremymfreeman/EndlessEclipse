@@ -7,6 +7,7 @@ using System;
 public class Enemy : MonoBehaviour
 {
     public static event Action<Enemy> OnEnemyKilled;
+    public static int enemyCount = 0; // static variable to track enemy count
     public float speed = 3f;
     [SerializeField] float health, maxHealth = 100f;
     private Rigidbody2D rb;
@@ -14,6 +15,10 @@ public class Enemy : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip damageSound;
 
+    private float timeSinceLastUpdate = 0f;
+    private float updateInterval = 30f;
+    private float healthIncrease = 50f;
+    private float speedIncrease = 0.1f;
 
     private void Start()
     {
@@ -22,9 +27,15 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
     }
 
-
     private void Update()
     {
+        timeSinceLastUpdate += Time.deltaTime;
+        if (timeSinceLastUpdate >= updateInterval)
+        {
+            timeSinceLastUpdate = 0f;
+            health += healthIncrease;
+            speed += speedIncrease;
+        }
     }
 
     private void FixedUpdate()
@@ -55,6 +66,9 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject, damageSound.length);
             OnEnemyKilled?.Invoke(this);
+            enemyCount++; // increment enemy count when an enemy is destroyed
+            Debug.Log(enemyCount); // print enemy count to console
+
         }
     }
 
