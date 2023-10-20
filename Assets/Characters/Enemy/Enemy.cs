@@ -7,15 +7,10 @@ using System;
 public class Enemy : MonoBehaviour
 {
     public static event Action<Enemy> OnEnemyKilled;
-    public Transform target;
     public float speed = 3f;
-    public float rotateSpeed = 0.0025f;
+    [SerializeField] float health, maxHealth = 100f;
     private Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
-    [SerializeField] float health, maxHealth = 100f;
-    private int currentHealth;
-     public Material flashMaterial;
-    private Material defaultMaterial;
     public AudioSource audioSource;
     public AudioClip damageSound;
 
@@ -25,30 +20,29 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
-        defaultMaterial = spriteRenderer.material;
     }
 
 
     private void Update()
     {
-        if (!target)
-        {
-            GetTarget();
-        }
-        else
-        {
-            RotateTowardsTarget();
-        }
-         // Check if player is at the same position as the enemy
-        if (target && transform.position == target.position)
-        {
-        Destroy(target.gameObject);
-    }
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = transform.up * speed;
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            Vector2 direction = (GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
+            rb.velocity = direction * speed;
+        }
+        
+        if (rb.velocity.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (rb.velocity.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
     } 
 
 
@@ -56,7 +50,6 @@ public class Enemy : MonoBehaviour
     {
         audioSource.PlayOneShot(damageSound);
         health -= damageAmount;
-        StartCoroutine(FlashMaterial());
 
         if (health <= 0)
         {
@@ -65,39 +58,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private IEnumerator FlashMaterial()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        spriteRenderer.material = flashMaterial;
-        yield return new WaitForSeconds(1f);
-        spriteRenderer.material = defaultMaterial;
-    }
-
-
-    private void RotateTowardsTarget()
-    {
-        Vector2 targetDirection = target.position - transform.position;
-        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
-        Quaternion q = Quaternion.Euler(new Vector3(0, 0, angle));
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
-
-        if (targetDirection.x < 0)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            spriteRenderer.flipX = true;
-        }
-        else if (targetDirection.x > 0)
-        {
-            spriteRenderer.flipX = false;
+            Destroy(collision.gameObject);
         }
     }
-
-    private void GetTarget()
-    {
-        if (GameObject.FindGameObjectWithTag("Player"))
-        {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-    }
-
-   
-
 }
