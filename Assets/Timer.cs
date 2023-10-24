@@ -16,6 +16,9 @@ public class Timer : MonoBehaviour
     public bool hasLimit;
     public float timerLimit;
 
+    [Header("Pause Settings")]
+    public bool isPaused;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,8 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isPaused) return;
+
         currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
         
         if(hasLimit && ((countDown && currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))

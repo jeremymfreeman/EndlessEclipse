@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class MouseTracker : MonoBehaviour
@@ -21,21 +20,14 @@ public class MouseTracker : MonoBehaviour
             mousePosition.z = -mainCamera.transform.position.z;
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
 
-            StartCoroutine(ShootProjectile(worldPosition));
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            if (projectile != null)
+            {
+                Vector3 direction = (worldPosition - transform.position).normalized;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+            }
         }
-    }
-
-    IEnumerator ShootProjectile(Vector3 targetPosition)
-    {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        if (projectile != null)
-        {
-            Vector3 direction = (targetPosition - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
-        }
-
-        yield return null;
     }
 }

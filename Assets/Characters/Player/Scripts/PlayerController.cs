@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Add a new layer for projectiles
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Projectile"));
+        
+        // Modify the movement filter to exclude the projectile layer
+        movementFilter.SetLayerMask(movementFilter.layerMask & ~(1 << LayerMask.NameToLayer("Projectile")));
     }
 
     private void FixedUpdate()
@@ -106,5 +112,14 @@ public class PlayerController : MonoBehaviour
     void OnShoot(InputValue shootValue)
     {
         isShooting = shootValue.isPressed;
+    }
+
+
+    private void OnTriggerEnter(Collider collisionInfo)
+    {
+       if (collisionInfo.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
