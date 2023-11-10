@@ -17,8 +17,8 @@ public class Enemy : MonoBehaviour
 
     private float timeSinceLastUpdate = 0f;
     private float updateInterval = 30f;
-    private float healthIncrease = 50f;
-    private float speedIncrease = 0.1f;
+    private float healthIncrease = 75f;
+    private float speedIncrease = 0.2f;
 
     private void Start()
     {

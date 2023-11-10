@@ -9,12 +9,12 @@ public class Health : MonoBehaviour
     public Animator animator;
     void Start()
     {
-        playerCurrentHealth = playerMaxHealth;
+        playerMaxHealth = playerCurrentHealth;
         
     }
     public void PlayerTakeDamage(int damage)
     {
-        Debug.Log("Player takes damage");
+
         playerCurrentHealth -= damage;
         if (playerCurrentHealth <= 0)
         {
