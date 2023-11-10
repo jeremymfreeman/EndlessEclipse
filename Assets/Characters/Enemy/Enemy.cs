@@ -15,6 +15,13 @@ public class Enemy : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip damageSound;
 
+    
+
+    
+    private bool isDead;
+    public GameManagerScript gameManager;
+
+
     private float timeSinceLastUpdate = 0f;
     private float updateInterval = 30f;
     private float healthIncrease = 75f;
@@ -71,12 +78,15 @@ public class Enemy : MonoBehaviour
 
         }
     }
+     
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(collision.gameObject);
-        }
+          if (collision.gameObject.CompareTag("Player") && !isDead)
+    {
+        Destroy(collision.gameObject);
+        isDead = true;
+        gameManager.gameOver();
+    }
     }
 }

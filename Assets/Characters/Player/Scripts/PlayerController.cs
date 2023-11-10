@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
-    //public SwordAttack swordAttack;
+    public GameManagerScript gameManager;
+
+    private bool isDead;
 
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -115,11 +118,15 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider collisionInfo)
+private void OnTriggerEnter(Collider collisionInfo)
+{
+    if (collisionInfo.gameObject.CompareTag("Enemy") && !isDead)
     {
-       if (collisionInfo.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
+        Debug.Log("Player Collided with Enemy");
+        isDead = true;
+        gameManager.gameOver();
+        Destroy(gameObject);
     }
+}
+
 }
