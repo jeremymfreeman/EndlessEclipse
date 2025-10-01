@@ -206,7 +206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 331}
+  m_AnchoredPosition: {x: 38, y: 331.59}
   m_SizeDelta: {x: 1888.1868, y: 416.8115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &83593599
@@ -242,7 +242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Visual Game Design Project
+  m_Text: 'Endless Eclipse '
 --- !u!222 &83593600
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -939,10 +939,7 @@ MonoBehaviour:
 
     Sandy Thomas
 
-    William Corr
-
-    Michael
-    Goodman'
+    William Corr'
 --- !u!222 &1646769537
 CanvasRenderer:
   m_ObjectHideFlags: 0
