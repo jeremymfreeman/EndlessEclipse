@@ -1,4 +1,4 @@
-# Visual Game Design – Roguelike Survival Game
+# Endless Eclipse – Roguelike Survival Game
 
 ## Overview  
 This project was created as part of **Engineering 101 (Freshman Year Project)** at California Baptist University.  
