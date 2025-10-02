@@ -18,10 +18,10 @@ I served as **Project Lead and Game Lead**. My responsibilities included:
 ---
 
 ## Features  
-- 🎮 **Roguelike survival gameplay** – endless waves of enemies with scaling difficulty and life system.  
-- 👾 **Progressive challenge** – increasing spawn rates and enemy movement speeds.  
-- 🎨 **Custom assets** – original art and audio created by teammates.  
-- ⚙️ **Built in Unity** – developed entirely using C# and the Unity game engine.  
+- **Roguelike survival gameplay** – endless waves of enemies with scaling difficulty and life system.  
+- **Progressive challenge** – increasing spawn rates and enemy movement speeds.  
+- **Custom assets** – original art and audio created by teammates.  
+- **Built in Unity** – developed entirely using C# and the Unity game engine.  
 
 ---
 
