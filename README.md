@@ -56,7 +56,7 @@ I served as **Project Lead and Game Lead**. My responsibilities included:
 
 ## Gameplay Preview
 
-![Gameplay GIF](docs/screenshots/gameplay.gif)
+![Gameplay GIF](docs/screenshots/gameplay2.gif)
 
 ## Lessons Learned  
 - Led a small development team, gaining experience in **project management** and **collaboration**.  
