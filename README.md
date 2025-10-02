@@ -33,6 +33,13 @@ I served as **Project Lead and Game Lead**. My responsibilities included:
 
 ---
 
+## Team  
+- **Jeremy Freeman** – Project Lead, Game Lead, Programming  
+- **Sandy Thomas** – Sound Design, Audio Assets  
+- **William Corr** – Visual Art, 2D Assets  
+
+---
+
 ## How to Play  
 1. Clone or download the repository.  
 2. Open the project in **Unity (2021.x or later recommended)**.  
@@ -41,12 +48,15 @@ I served as **Project Lead and Game Lead**. My responsibilities included:
 
 ---
 
-## Team  
-- **Jeremy Freeman** – Project Lead, Game Lead, Programming  
-- **Sandy Thomas** – Sound Design, Audio Assets  
-- **William Corr** – Visual Art, 2D Assets  
+## Screenshots
 
----
+![Gameplay Screenshot First Level](docs/screenshots/level1.png)
+
+![Main Menu](docs/screenshots/menu.png)
+
+## Gameplay Preview
+
+![Gameplay GIF](docs/screenshots/preview.gif)
 
 ## Lessons Learned  
 - Led a small development team, gaining experience in **project management** and **collaboration**.  
